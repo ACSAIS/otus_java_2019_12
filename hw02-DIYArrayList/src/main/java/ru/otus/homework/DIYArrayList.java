@@ -43,8 +43,16 @@ public class DIYArrayList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        Object[] newArray = new Object[index];
-        for (int i = 0; i < index; i++) {
+        int cursor = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                cursor = i;
+                break;
+            }
+        }
+
+        Object[] newArray = new Object[cursor];
+        for (int i = 0; i < cursor; i++) {
             newArray[i] = array[i];
         }
         return newArray;
@@ -240,13 +248,24 @@ public class DIYArrayList<T> implements List<T> {
 
         @Override
         public void set(T t) {
-            array[super.index] = t;
+            array[super.index - 1] = t;
         }
 
         @Override
         public void add(T t) {
             throw new UnsupportedOperationException();
 
+        }
+        private class DIYComparator implements Comparator<T> {
+            @Override
+            public int compare(T o1, T o2) {
+                if (o1.hashCode() > o2.hashCode()) {
+                    return 1;
+                } else if (o1.hashCode() < o2.hashCode()) {
+                    return -1;
+                }
+                return 0;
+            }
         }
     }
 }

@@ -13,7 +13,8 @@ public class Main {
         System.out.println(src.size() + " " + dest.size());
         Collections.copy(dest, src);
         System.out.println(dest);
-        dest.toArray();
+        Collections.sort(dest);
+        System.out.println(dest);
     }
 
 }
