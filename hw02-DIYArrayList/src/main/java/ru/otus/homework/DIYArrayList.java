@@ -2,13 +2,13 @@ package ru.otus.homework;
 
 import javax.management.openmbean.ArrayType;
 import java.util.*;
-
 public class DIYArrayList<T> implements List<T> {
     private Object[] array;
     private int index;
     public DIYArrayList() {
-         this.array = new Object[1];
+         this.array = new Object[10];
          this.index = 0;
+
     }
 
     public DIYArrayList(Object[] array) {
@@ -18,12 +18,12 @@ public class DIYArrayList<T> implements List<T> {
 
     public DIYArrayList(int index) {
         this.array = new Object[index];
-        this.index = index;
+        this.index = 0;
     }
 
     @Override
     public int size() {
-        return this.index;
+        return array.length;
     }
 
     @Override
@@ -43,16 +43,8 @@ public class DIYArrayList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        int cursor = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == null) {
-                cursor = i;
-                break;
-            }
-        }
-
-        Object[] newArray = new Object[cursor];
-        for (int i = 0; i < cursor; i++) {
+        Object[] newArray = new Object[index];
+        for (int i = 0; i < index; i++) {
             newArray[i] = array[i];
         }
         return newArray;
@@ -211,10 +203,8 @@ public class DIYArrayList<T> implements List<T> {
     }
 
     private class ListItr extends Itr implements ListIterator<T>{
-        private Object[] array;
         public ListItr(DIYArrayList<T> diyArrayList) {
             super(diyArrayList);
-            array = diyArrayList.array;
         }
 
         @Override
@@ -248,7 +238,8 @@ public class DIYArrayList<T> implements List<T> {
 
         @Override
         public void set(T t) {
-            array[super.index - 1] = t;
+            super.diyArrayList.index++;
+            super.diyArrayList.array[super.index - 1] = t;
         }
 
         @Override
