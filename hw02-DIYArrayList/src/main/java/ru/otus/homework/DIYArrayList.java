@@ -2,12 +2,14 @@ package ru.otus.homework;
 
 import javax.management.openmbean.ArrayType;
 import java.util.*;
+
 public class DIYArrayList<T> implements List<T> {
     private Object[] array;
     private int index;
+
     public DIYArrayList() {
-         this.array = new Object[10];
-         this.index = 0;
+        this.array = new Object[10];
+        this.index = 0;
 
     }
 
@@ -92,8 +94,6 @@ public class DIYArrayList<T> implements List<T> {
     }
 
 
-
-
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
         throw new UnsupportedOperationException();
@@ -121,7 +121,7 @@ public class DIYArrayList<T> implements List<T> {
     @Override
     @SuppressWarnings("unchecked")
     public T get(int index) {
-        return (T)array[index];
+        return (T) array[index];
     }
 
     @Override
@@ -182,10 +182,12 @@ public class DIYArrayList<T> implements List<T> {
         }
         return builder.toString();
     }
+
     private class Itr implements Iterator<T> {
 
         private DIYArrayList<T> diyArrayList;
         private int index;
+
         public Itr(DIYArrayList<T> diyArrayList) {
             this.diyArrayList = diyArrayList;
             index = 0;
@@ -195,6 +197,7 @@ public class DIYArrayList<T> implements List<T> {
         public boolean hasNext() {
             return index < diyArrayList.size();
         }
+
         @SuppressWarnings("unchecked")
         @Override
         public T next() {
@@ -202,7 +205,7 @@ public class DIYArrayList<T> implements List<T> {
         }
     }
 
-    private class ListItr extends Itr implements ListIterator<T>{
+    private class ListItr extends Itr implements ListIterator<T> {
         public ListItr(DIYArrayList<T> diyArrayList) {
             super(diyArrayList);
         }
@@ -247,6 +250,7 @@ public class DIYArrayList<T> implements List<T> {
             throw new UnsupportedOperationException();
 
         }
+
         private class DIYComparator implements Comparator<T> {
             @Override
             public int compare(T o1, T o2) {
