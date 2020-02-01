@@ -1,6 +1,5 @@
 package ru.otus.homework;
 
-import javax.management.openmbean.ArrayType;
 import java.util.*;
 
 public class DIYArrayList<T> implements List<T> {
